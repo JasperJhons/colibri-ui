@@ -1,3 +1,6 @@
+<img align="left" width="140" height="140" title="colibri-ui"
+     src="https://rawgit.com/alfa-laboratory/colibri-ui/master/collibri_logo.svg" />
+     
 # Colibri-ui
 [![Build Status](https://travis-ci.org/alfa-laboratory/colibri-ui.svg?branch=master)](https://travis-ci.org/alfa-laboratory/colibri-ui)
 [![Coverage Status](https://coveralls.io/repos/github/alfa-laboratory/colibri-ui/badge.svg?branch=master)](https://coveralls.io/github/alfa-laboratory/colibri-ui?branch=master)
@@ -8,7 +11,7 @@
 Библиотека для автоматизации ui-тестирования мобильных приложений
 
 ## Для чего мы это сделали?
-Решение создано для упрощения написания сценариев ui-тестов для мобильных приложений, для сохранения единообразия подходов к описанию процессов в едином стиле 
+Решение создано для упрощения написания сценариев ui-тестов для мобильных приложений, для сохранения единообразия подходов к описанию процессов в едином стиле. 
 
 ## Папки проекта:
 * *enviroment* - содержит описания девайсов и нод для запуска фреймворка на устройствах
@@ -35,7 +38,7 @@
 sh scripts/start_hub.sh
 ```
 
-Результат удачного запуска: появился файл seleniumhub.pid в папке scripts и соответствующие логи в консоли
+Результат удачного запуска: появился файл seleniumhub.pid в папке scripts и соответствующие логи в консоли.
 
 ## Для запуска ноды:
 1) заходим в корень проекта, папка в которой лежит build.gradle;
@@ -46,11 +49,11 @@ sh scripts/start_node.sh ios10 4726
 sh scripts/start_node.sh android5 4721
 ```
 
-Результат удачного запуска: появился файл appium.pid в папке ресурсов соответствующей платформы и логи в консоли
+Результат удачного запуска: появился файл appium.pid в папке ресурсов соответствующей платформы и логи в консоли.
 
 ## Для остановки ноды (пока не работает):
-1) заходим в корень проекта, папка в которой лежит build.gradle;
-2) в консоли выполняем 
+1) Заходим в корень проекта, папка в которой лежит build.gradle;
+2) В консоли выполняем 
 ```
 sh scripts/stop.sh &lt;платформа&gt;
 ```
@@ -92,7 +95,7 @@ sh scripts/stop.sh &lt;платформа&gt;
 Мы приветствуем участие в open source проектах. Для упрощения приема pull request'ов мы просим соблюдать простые правила:
 1) Если мы пишем общие шаги, то в них не должно быть действий зависящих от приложения либо от особенностей платформы (например наботает только на одном девайсе).
 2) Если предлагаются изменения в ядро - они должны быть покрыты тестами, и тесты должны проходить.
-3) Стараемся делать PR с одним коммитом
+3) Стараемся делать PR с одним коммитом.
 
 ## Template
 
@@ -100,5 +103,4 @@ https://github.com/alfa-laboratory/colibri-ui-template
 
 ## Контакты
 
-[Slack](https://colibri-ui-community.slack.com/shared_invite/MTg3Mzk3NTI2OTQ4LTE0OTU2MzU5NDItZDc1MGFkOWY4Yw)
 [Telegram](https://t.me/colibri_ui_community)

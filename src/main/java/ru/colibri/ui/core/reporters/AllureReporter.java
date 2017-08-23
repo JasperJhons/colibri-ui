@@ -1,6 +1,7 @@
 package ru.colibri.ui.core.reporters;
 
 import io.appium.java_client.AppiumDriver;
+import org.apache.commons.lang3.StringUtils;
 import org.jbehave.core.model.*;
 import org.jbehave.core.reporters.StoryReporter;
 import org.openqa.selenium.OutputType;
@@ -12,8 +13,6 @@ import ru.yandex.qatools.allure.config.AllureModelUtils;
 import ru.yandex.qatools.allure.events.*;
 import ru.yandex.qatools.allure.junit.AllureRunListener;
 
-import java.awt.*;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,9 +28,12 @@ public class AllureReporter extends AllureRunListener implements StoryReporter {
 
     public void beforeStory(Story story, boolean givenStory) {
         uid = generateSuiteUid(story);
+        String path = story.getPath();
+        int secondIndex = StringUtils.ordinalIndexOf(path, "/", 2);
+        String subPath = path.substring(secondIndex + 1);
         TestSuiteStartedEvent event = new TestSuiteStartedEvent(uid, story.getName());
         event.withLabels(AllureModelUtils.createTestFrameworkLabel("JBehave"));
-        event.withTitle(story.getName());
+        event.withTitle(subPath);
         allure.fire(event);
     }
 
@@ -66,13 +68,7 @@ public class AllureReporter extends AllureRunListener implements StoryReporter {
     }
 
     public void failed(String step, Throwable cause) {
-        try {
-            takeScreenshot(step);
-        } catch (AWTException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        takeScreenshot(step);
         allure.fire(new StepFinishedEvent());
         allure.fire(new StepFailureEvent().withThrowable(cause.getCause()));
         allure.fire(new TestCaseFailureEvent().withThrowable(cause.getCause()));
@@ -188,7 +184,7 @@ public class AllureReporter extends AllureRunListener implements StoryReporter {
         return suites;
     }
 
-    public void takeScreenshot(String step) throws AWTException, IOException {
+    public void takeScreenshot(String step) {
         if (applicationContext.getBean(AppiumDriver.class) != null) {
             Allure.LIFECYCLE.fire(new MakeAttachmentEvent((applicationContext.getBean(AppiumDriver.class)).getScreenshotAs(OutputType.BYTES), step, "image/png"));
         }
