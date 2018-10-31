@@ -15,6 +15,7 @@ import static java.lang.String.format;
 
 @Component
 public class IOSPageSteps extends AbsSteps {
+
     @Autowired
     private PropertyUtils propertyUtils;
 
@@ -34,5 +35,12 @@ public class IOSPageSteps extends AbsSteps {
     public void checkText(@Named("$textOrKeyword") String textOrKeyword) {
         String text = propertyUtils.injectProperties(textOrKeyword);
         driver.findElement(MobileBy.iOSNsPredicateString(format("name contains '%1$s' or value contains '%1$s' or label contains '%1$s'", text)));
+    }
+
+    @Step
+    @Then("на экране есть надпись \"$textOrKeyword\" без учета регистра")
+    public void checkTextCaseInsensitive(@Named("$textOrKeyword") String textOrKeyword) {
+        String text = propertyUtils.injectProperties(textOrKeyword);
+        driver.findElement(MobileBy.iOSNsPredicateString(format("name contains[c] '%1$s' or value contains[c] '%1$s' or label contains[c] '%1$s'", text)));
     }
 }
